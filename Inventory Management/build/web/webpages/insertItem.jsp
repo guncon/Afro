@@ -14,8 +14,8 @@ type="text/css"/>
 
 
 
-    <s:textfield name="ID" label="id" />
-<s:textfield name="NAME" label="name" align = "center"/>
+<s:textfield name="ID" label="item id" />
+<s:textfield name="NAME" label="item name" />
 <s:submit value="Save" align="center"/>
 
 </s:form>
