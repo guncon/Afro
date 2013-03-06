@@ -1,17 +1,25 @@
-<%-- 
-    Document   : welcome
-    Created on : Mar 6, 2013, 3:18:09 PM
-    Author     : samsung
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+<title>Struts 2 Insert Data Application!</title>
+
+<link href="<s:url value="/css/main.css"/>" rel="stylesheet"
+type="text/css"/>
+
+</head>
+<body>
+
+
+    
+<s:form action="item" method="POST">
+<s:submit value="Go to item registration" align="center"/>
+</s:form>
+<s:form action="person" method="POST">
+<s:submit value="Go to user registration" align="center"/>
+</s:form>
+<s:form action="borrowed" method="POST">
+<s:submit value="Go to check in/out" align="center"/>
+</s:form>
+</body>
+
 </html>
