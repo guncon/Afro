@@ -53,7 +53,8 @@ while(rs.next()){
         list.add(rs.getString("PROD_ID"));
         list2.add(rs.getInt("ITEM_TYPE_ID"));
 }   
-    
+    con.close();
+rs.close();
 
         return SUCCESS;
     

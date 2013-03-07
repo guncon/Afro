@@ -43,6 +43,11 @@
   <result>/webpages/welcome.jsp
   </result>
   </action>
+  <action name="refresh" class="core.getXML">
+  <result>/webpages/welcome.jsp
+  </result>
+  </action>
+  
   
   </package>
 

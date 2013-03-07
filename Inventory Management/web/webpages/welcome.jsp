@@ -20,6 +20,10 @@ type="text/css"/>
 <s:form action="borrowed" method="POST">
 <s:submit value="Go to check in/out" align="center"/>
 </s:form>
+
+<s:form action="refresh" method="POST">
+<s:submit value="refresh database" align="center"/>
+</s:form>
 </body>
 
 </html>
