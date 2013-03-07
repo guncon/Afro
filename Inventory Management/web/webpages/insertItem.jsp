@@ -16,6 +16,9 @@ type="text/css"/>
 
 <s:textfield name="ID" label="item id" />
 <s:textfield name="NAME" label="item name" />
+<s:select list="list" name="PRODID" />
+<s:select list="list2" name="ITEMTYPEID" />
+          
 <s:submit value="Save" align="center"/>
 
 </s:form>

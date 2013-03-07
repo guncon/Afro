@@ -17,33 +17,42 @@ import mysql.MySqlConnector;
  *
  * @author samsung
  */
-public class display extends ActionSupport{
+public class Itemlist extends ActionSupport{
     private MySqlConnector mysql = new MySqlConnector();
-    private List<displayer> list = null;
+    private List list = null;
+
+    
+     private List list2 = null;
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    public List<displayer> getList(){
+    public List getList2() {
+        return list2;
+    }
+
+    public void setList2(List list2) {
+        this.list2 = list2;
+    }
+    public List getList(){
         return list;
     }
-     public void setList(List<displayer> list) {
+     public void setList(List list) {
         this.list = list;
     }
 
     public String execute() throws Exception {
-        list = new ArrayList<displayer>();
-        String query = "SELECT * from employees";
+        list = new ArrayList();
+        list2 = new ArrayList();
+        String query = "SELECT * from items";
         con = mysql.getConnection();
         stmt = con.createStatement();
         rs = stmt.executeQuery(query);
         
 while(rs.next()){
-        displayer bean = new displayer();
-       bean.setName(rs.getString("name"));
-       bean.setId(rs.getInt("emp_id"));
        
-        list.add(bean);
-}
+        list.add(rs.getString("PROD_ID"));
+        list2.add(rs.getInt("ITEM_TYPE_ID"));
+}   
     
 
         return SUCCESS;

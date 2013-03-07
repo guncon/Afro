@@ -15,54 +15,44 @@ public  class insert  extends ActionSupport {
   private Connection con;
   private Statement stmt;
   
-     private int ID = 0;
+     private String ID = null;
 
 
-  /**
- * <p>Provide User username.</p>
- *
- * @return Returns the User username.
- */
-  public int getID() {
+  public String getID() {
   return ID;
   }
-
-  /**
- * <p>Store new User username</p>
- *
- * @param value The username to set.
- */
-  public void setID(int value) {
+  public void setID(String value) {
   ID = value;
   }
 
-  // ---- Username property ----
-
-  /**
- * <p>Field to store User password.</p>
- * <p/>
- */
+  
   private String name = null;
 
 
-  /**
- * <p>Provide User password.</p>
- *
- * @return Returns the User password.
- */
+
   public String getNAME() {
   return name;
   }
 
-  /**
- * <p>Store new User password</p>
- *
- * @param value The password to set.
- */
   public void setNAME(String value) {
   name = value;
   }
-  
+   private int prodid = 0;
+   public int getPRODID() {
+  return prodid;
+  }
+
+  public void setPRODID(int value) {
+  prodid = value;
+  }
+  private int itemtypeid = 0;
+   public int getITEMTYPEID() {
+  return itemtypeid;
+  }
+
+  public void setITEMTYPEID(int value) {
+  itemtypeid = value;
+  }
   public String execute() throws Exception {
 
   try{
@@ -77,7 +67,7 @@ public  class insert  extends ActionSupport {
 
  
 
- int val = stmt.executeUpdate("INSERT INTO employees (name) VALUES('"+getNAME()+"')"); 
+ int val = stmt.executeUpdate("INSERT INTO items (ITEM_ID,NAME,PROD_ID,ITEM_TYPE_ID) VALUES('"+getID()+"','"+getNAME()+"','"+getPRODID()+"','"+getITEMTYPEID()+"')"); 
  con.close();
   if(val == 0){
   return ERROR;

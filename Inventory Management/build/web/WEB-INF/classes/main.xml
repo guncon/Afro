@@ -23,10 +23,10 @@
   <action name="person">
   <result>/webpages/welcome.jsp</result>
   </action>
-   <action name="item">
+   <action name="item" class= "core.Itemlist">
   <result>/webpages/insertItem.jsp</result>
   </action>
-  <action name="borrowed">
+  <action name="borrowed" >
   <result>/webpages/welcome.jsp</result>
   </action>
   <action name="person">
@@ -39,7 +39,7 @@
   </result>
   </action>
   
-  <action name="loop" class = "core.display">
+  <action name="loop">
   <result>/webpages/welcome.jsp
   </result>
   </action>

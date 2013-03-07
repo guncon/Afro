@@ -18,7 +18,7 @@ public class MySqlConnector {
     
 public Connection getConnection(){
      String url = "jdbc:mysql://localhost:3306/";
-  String dbName = "test";
+  String dbName = "assetdb";
   String driverName = "com.mysql.jdbc.Driver";
   String userName = "root";
   String password = "root";
