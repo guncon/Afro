@@ -5,27 +5,29 @@
 package core;
 
 import com.opensymphony.xwork2.ActionSupport;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import mysql.MySqlConnector;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author samsung
  */
 public class Itemlist extends ActionSupport{
-    private MySqlConnector mysql = new MySqlConnector();
-    private List list = null;
-
     
+    private List list = null;
      private List list2 = null;
-    private Connection con;
-    private Statement stmt;
-    private ResultSet rs;
+     private ArrayList temp;
+     private ArrayList temp2;
+ 
     public List getList2() {
         return list2;
     }
@@ -41,24 +43,40 @@ public class Itemlist extends ActionSupport{
     }
 
     public String execute() throws Exception {
-        list = new ArrayList();
-        list2 = new ArrayList();
-        String query = "SELECT * from items";
-        con = mysql.getConnection();
-        stmt = con.createStatement();
-        rs = stmt.executeQuery(query);
-        
-while(rs.next()){
        
-        list.add(rs.getString("PROD_ID"));
-        list2.add(rs.getInt("ITEM_TYPE_ID"));
-}   
-    con.close();
-rs.close();
+        temp = new ArrayList();
+        temp2 = new ArrayList();
+        
+       File items = new File("items.xml");
+DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+Document doc = dBuilder.parse(items);
+doc.getDocumentElement().normalize();
+NodeList nodes = doc.getElementsByTagName("Row");
+
+for (int i = 0; i < nodes.getLength(); i++) {
+Node node = nodes.item(i);
+
+if (node.getNodeType() == Node.ELEMENT_NODE) {
+Element element = (Element) node;
+temp.add(getValue("PROD_ID", element));
+temp2.add(getValue("ITEM_TYPE_ID", element));
+}
+list = new ArrayList(new HashSet(temp));
+list2 = new ArrayList(new HashSet(temp2));
+}
+
 
         return SUCCESS;
     
     }
+private static String getValue(String tag, Element element) {
+NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
+Node node = (Node) nodes.item(0);
+return node.getNodeValue();
+}
+
+
 
 
 }
