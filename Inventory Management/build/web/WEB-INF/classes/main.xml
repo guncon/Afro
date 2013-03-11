@@ -20,21 +20,27 @@
 <!-- inserting data into data base through JDBC -->
 
  
-  <action name="person">
-  <result>/webpages/welcome.jsp</result>
+  <action name="person" class = "core.Userlist">
+  <result>/webpages/insertUser.jsp</result>
   </action>
+  
    <action name="item" class= "core.Itemlist">
   <result>/webpages/insertItem.jsp</result>
   </action>
   <action name="borrowed" >
   <result>/webpages/welcome.jsp</result>
   </action>
-  <action name="person">
-  <result>/webpages/insertItem.jsp</result>
-  </action>
-  <action name="insertData" class="core.insert">
+
+  <action name="insertItem" class="core.Insertitem">
   <result  name="error">/webpages/insertItem.jsp</result>
   <result name = "input">/webpages/insertItem.jsp</result>
+  <result>/webpages/insertSuccess.jsp
+  </result>
+  </action>
+
+  <action name="insertUser" class="core.Insertuser">
+  <result  name="error">/webpages/insertUser.jsp</result>
+  <result name = "input">/webpages/insertUser.jsp</result>
   <result>/webpages/insertSuccess.jsp
   </result>
   </action>

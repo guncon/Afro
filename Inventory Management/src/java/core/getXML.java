@@ -44,10 +44,9 @@ public class getXML extends ActionSupport{
 public String execute() throws Exception {
      list = new ArrayList();
      list.add("*");
-
-   
-    createxml("items", list);
-
+     createxml("items", list);
+     createxml("groups",list);
+     createxml("permission",list);
        
      return SUCCESS;
     } 
@@ -98,7 +97,7 @@ while(rs.next()){
     transformer.setOutputProperty(OutputKeys.INDENT, "yes");
     
     
-    StreamResult sr = new StreamResult(new File("items.xml"));
+    StreamResult sr = new StreamResult(new File(table+".xml"));
     transformer.transform(domSource, sr);
 
     con.close();

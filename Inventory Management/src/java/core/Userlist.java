@@ -21,29 +21,30 @@ import org.w3c.dom.NodeList;
  *
  * @author samsung
  */
-public class Itemlist extends ActionSupport{
+public class Userlist extends ActionSupport{
     
-    private ArrayList prodidlist = null;
-     private ArrayList itemtypeidlist = null;
-    private String xmlname = "items.xml";
+    private ArrayList groupid = null;
+     private ArrayList permid = null;
+   
     
      private parseXML pxml = new parseXML();
 
-    public ArrayList getProdidlist() {
-        return prodidlist;
+    public ArrayList getGroupid() {
+        return groupid;
     }
 
-    public void setProdidlist(ArrayList prodidlist) {
-        this.prodidlist = prodidlist;
+    public void setGroupid(ArrayList groupid) {
+        this.groupid = groupid;
     }
 
-    public ArrayList getItemtypeidlist() {
-        return itemtypeidlist;
+    public ArrayList getPermid() {
+        return permid;
     }
 
-    public void setItemtypeidlist(ArrayList itemtypeidlist) {
-        this.itemtypeidlist = itemtypeidlist;
+    public void setPermid(ArrayList permid) {
+        this.permid = permid;
     }
+
  
  
  
@@ -51,8 +52,8 @@ public class Itemlist extends ActionSupport{
     public String execute() throws Exception {
 
 
-prodidlist = new ArrayList(new HashSet(pxml.xmlparse("PROD_ID", xmlname)));
-itemtypeidlist = new ArrayList(new HashSet(pxml.xmlparse("ITEM_TYPE_ID", xmlname)));
+groupid = new ArrayList(new HashSet(pxml.xmlparse("GRP_ID", "groups.xml")));
+permid = new ArrayList(new HashSet(pxml.xmlparse("PERM_ID", "permission.xml")));
 
 
 

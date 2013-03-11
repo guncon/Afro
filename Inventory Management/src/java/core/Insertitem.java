@@ -10,7 +10,7 @@ import mysql.MySqlConnector;
 /**
  * <p> Validate a user login. </p>
  */
-public  class insert  extends ActionSupport {
+public  class Insertitem  extends ActionSupport {
   private MySqlConnector mysql = new MySqlConnector();
   private Connection con;
   private Statement stmt;
@@ -79,13 +79,6 @@ public  class insert  extends ActionSupport {
   
         
   }
-//    public void validate() {
-//        if (getNAME().length() == 0) {
-//            addFieldError("NAME", "User Name is required");
-//        } else if (!getNAME().equals("Eswar")) {
-//            addFieldError("NAME", "Invalid User");
-//        }
-//       
-//    }
+
 
 }
