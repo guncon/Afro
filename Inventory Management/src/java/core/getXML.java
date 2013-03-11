@@ -47,6 +47,7 @@ public String execute() throws Exception {
      createxml("items", list);
      createxml("groups",list);
      createxml("permission",list);
+     createxml("users",list);
        
      return SUCCESS;
     } 

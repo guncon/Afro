@@ -27,8 +27,8 @@
    <action name="item" class= "core.Itemlist">
   <result>/webpages/insertItem.jsp</result>
   </action>
-  <action name="borrowed" >
-  <result>/webpages/welcome.jsp</result>
+  <action name="borrowed" class= "core.Borrowlist" >
+  <result>/webpages/insertBorrow.jsp</result>
   </action>
 
   <action name="insertItem" class="core.Insertitem">
@@ -45,6 +45,19 @@
   </result>
   </action>
   
+    <action name="insertBorrow" class="core.Insertborrow">
+  <result  name="error">/webpages/insertBorrow.jsp</result>
+  <result name = "input">/webpages/insertBorrow.jsp</result>
+  <result>/webpages/insertSuccess.jsp
+  </result>
+  </action>
+  
+      <action name="updateBorrow" class="core.Updateborrow">
+  <result  name="error">/webpages/insertBorrow.jsp</result>
+  <result name = "input">/webpages/insertBorrow.jsp</result>
+  <result>/webpages/insertSuccess.jsp
+  </result>
+  </action>
   <action name="loop">
   <result>/webpages/welcome.jsp
   </result>
