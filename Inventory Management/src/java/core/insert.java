@@ -15,44 +15,43 @@ public  class insert  extends ActionSupport {
   private Connection con;
   private Statement stmt;
   
-     private String ID = null;
+  private String itemid;
+  private String itemname;
+  private int prodid;
+  private int itemtypeid;
 
+    public String getItemid() {
+        return itemid;
+    }
 
-  public String getID() {
-  return ID;
-  }
-  public void setID(String value) {
-  ID = value;
-  }
+    public void setItemid(String itemid) {
+        this.itemid = itemid;
+    }
 
+    public String getItemname() {
+        return itemname;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
+    }
+
+    public int getProdid() {
+        return prodid;
+    }
+
+    public void setProdid(int prodid) {
+        this.prodid = prodid;
+    }
+
+    public int getItemtypeid() {
+        return itemtypeid;
+    }
+
+    public void setItemtypeid(int itemtypeid) {
+        this.itemtypeid = itemtypeid;
+    }
   
-  private String name = null;
-
-
-
-  public String getNAME() {
-  return name;
-  }
-
-  public void setNAME(String value) {
-  name = value;
-  }
-   private int prodid = 0;
-   public int getPRODID() {
-  return prodid;
-  }
-
-  public void setPRODID(int value) {
-  prodid = value;
-  }
-  private int itemtypeid = 0;
-   public int getITEMTYPEID() {
-  return itemtypeid;
-  }
-
-  public void setITEMTYPEID(int value) {
-  itemtypeid = value;
-  }
   public String execute() throws Exception {
 
   try{
@@ -67,7 +66,7 @@ public  class insert  extends ActionSupport {
 
  
 
- int val = stmt.executeUpdate("INSERT INTO items (ITEM_ID,NAME,PROD_ID,ITEM_TYPE_ID) VALUES('"+getID()+"','"+getNAME()+"','"+getPRODID()+"','"+getITEMTYPEID()+"')"); 
+ int val = stmt.executeUpdate("INSERT INTO items (ITEM_ID,NAME,PROD_ID,ITEM_TYPE_ID) VALUES('"+getItemid()+"','"+getItemname()+"','"+getProdid()+"','"+getItemtypeid()+"')"); 
  con.close();
   if(val == 0){
   return ERROR;

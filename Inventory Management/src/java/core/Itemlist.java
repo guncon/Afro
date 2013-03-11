@@ -23,60 +23,51 @@ import org.w3c.dom.NodeList;
  */
 public class Itemlist extends ActionSupport{
     
-    private List list = null;
-     private List list2 = null;
-     private ArrayList temp;
-     private ArrayList temp2;
- 
-    public List getList2() {
-        return list2;
+    private ArrayList prodidlist = null;
+     private ArrayList itemtypeidlist = null;
+    private String xmlname = "items.xml";
+    
+     private parseXML pxml = new parseXML();
+
+    public ArrayList getProdidlist() {
+        return prodidlist;
     }
 
-    public void setList2(List list2) {
-        this.list2 = list2;
+    public void setProdidlist(ArrayList prodidlist) {
+        this.prodidlist = prodidlist;
     }
-    public List getList(){
-        return list;
+
+    public ArrayList getItemtypeidlist() {
+        return itemtypeidlist;
     }
-     public void setList(List list) {
-        this.list = list;
+
+    public void setItemtypeidlist(ArrayList itemtypeidlist) {
+        this.itemtypeidlist = itemtypeidlist;
     }
+ 
+ 
+ 
 
     public String execute() throws Exception {
-       
-        temp = new ArrayList();
-        temp2 = new ArrayList();
-        
-       File items = new File("items.xml");
-DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-Document doc = dBuilder.parse(items);
-doc.getDocumentElement().normalize();
-NodeList nodes = doc.getElementsByTagName("Row");
 
-for (int i = 0; i < nodes.getLength(); i++) {
-Node node = nodes.item(i);
 
-if (node.getNodeType() == Node.ELEMENT_NODE) {
-Element element = (Element) node;
-temp.add(getValue("PROD_ID", element));
-temp2.add(getValue("ITEM_TYPE_ID", element));
-}
-list = new ArrayList(new HashSet(temp));
-list2 = new ArrayList(new HashSet(temp2));
-}
+prodidlist = new ArrayList(new HashSet(pxml.xmlparse("PROD_ID", xmlname)));
+itemtypeidlist = new ArrayList(new HashSet(pxml.xmlparse("ITEM_TYPE_ID", xmlname)));
+
 
 
         return SUCCESS;
     
     }
-private static String getValue(String tag, Element element) {
+
+    private static String getValue(String tag, Element element) {
 NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
 Node node = (Node) nodes.item(0);
 return node.getNodeValue();
 }
-
-
-
-
 }
+
+
+
+
+

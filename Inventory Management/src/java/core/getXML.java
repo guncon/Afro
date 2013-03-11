@@ -43,8 +43,8 @@ public class getXML extends ActionSupport{
     
 public String execute() throws Exception {
      list = new ArrayList();
-     list.add("PROD_ID");
-     list.add("ITEM_TYPE_ID");
+     list.add("*");
+
    
     createxml("items", list);
 

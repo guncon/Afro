@@ -14,10 +14,10 @@ type="text/css"/>
 
 
 
-<s:textfield name="ID" label="item id" />
-<s:textfield name="NAME" label="item name" />
-<s:select list="list" name="PRODID" />
-<s:select list="list2" name="ITEMTYPEID" />
+<s:textfield name="itemid" label="item id" />
+<s:textfield name="itemname" label="item name" />
+<s:select list="prodidlist" name="prodid" />
+<s:select list="itemtypeidlist" name="itemtypeid" />
           
 <s:submit value="Save" align="center"/>
 
