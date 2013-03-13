@@ -40,6 +40,7 @@ public class getXML extends ActionSupport{
     private Statement stmt;
     private ResultSet rs;
     private List list;
+    private ArrayList listborrow;
     
 public String execute() throws Exception {
      list = new ArrayList();
@@ -48,6 +49,10 @@ public String execute() throws Exception {
      createxml("groups",list);
      createxml("permission",list);
      createxml("users",list);
+     listborrow = new ArrayList();
+     listborrow.add("ITEM_ID");
+     listborrow.add("USER_ID");
+     createxml("borrowed",listborrow);
        
      return SUCCESS;
     } 

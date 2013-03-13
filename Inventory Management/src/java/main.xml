@@ -58,7 +58,7 @@
   <result>/webpages/insertSuccess.jsp
   </result>
   </action>
-  <action name="loop">
+  <action name="loop" class = "core.getXML">
   <result>/webpages/welcome.jsp
   </result>
   </action>

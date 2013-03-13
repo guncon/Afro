@@ -25,7 +25,8 @@ public class Borrowlist extends ActionSupport{
     
     private ArrayList userid = null;
      private ArrayList itemid = null;
-
+     private ArrayList borroweditem = null;
+     private ArrayList borrower = null;
     
      private parseXML pxml = new parseXML();
 
@@ -45,6 +46,22 @@ public class Borrowlist extends ActionSupport{
         this.itemid = itemid;
     }
 
+    public ArrayList getBorroweditem() {
+        return borroweditem;
+    }
+
+    public void setBorroweditem(ArrayList borroweditem) {
+        this.borroweditem = borroweditem;
+    }
+
+    public ArrayList getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(ArrayList borrower) {
+        this.borrower = borrower;
+    }
+
 
  
  
@@ -54,6 +71,8 @@ public class Borrowlist extends ActionSupport{
 
 itemid = new ArrayList(new HashSet(pxml.xmlparse("ITEM_ID", "items.xml")));
 userid = new ArrayList(new HashSet(pxml.xmlparse("USER_ID", "users.xml")));
+borroweditem = new ArrayList(pxml.xmlparse("ITEM_ID", "borrowed.xml"));
+borrower = new ArrayList(pxml.xmlparse("USER_ID", "borrowed.xml"));
 
 
 

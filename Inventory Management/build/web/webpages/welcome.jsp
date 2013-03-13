@@ -23,6 +23,8 @@ type="text/css"/>
 
 <s:form action="refresh" method="POST">
 <s:submit value="refresh database" align="center"/>
+
+
 </s:form>
 </body>
 

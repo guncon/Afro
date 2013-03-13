@@ -66,7 +66,7 @@ public  class Insertitem  extends ActionSupport {
 
  
 
- int val = stmt.executeUpdate("INSERT INTO items (ITEM_ID,NAME,PROD_ID,ITEM_TYPE_ID) VALUES('"+getItemid()+"','"+getItemname()+"','"+getProdid()+"','"+getItemtypeid()+"')"); 
+ int val = stmt.executeUpdate("INSERT INTO items (ITEM_ID,NAME,PROD_ID,ITEM_TYPE_ID,Isborrowed) VALUES('"+getItemid()+"','"+getItemname()+"','"+getProdid()+"','"+getItemtypeid()+"',0)"); 
  con.close();
   if(val == 0){
   return ERROR;

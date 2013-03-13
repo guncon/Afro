@@ -2,6 +2,7 @@ package core;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -21,6 +22,7 @@ public  class Insertborrow  extends ActionSupport {
   
  private String userid;
  private String itemid;
+    private String query;
 
     public String getUserid() {
         return userid;
@@ -57,6 +59,12 @@ String formattedDate = sdf.format(date);
 String defaulttime = "0000-00-00 00:00:00";
 
  int val = stmt.executeUpdate("INSERT INTO borrowed (ITEM_ID, USER_ID,DATE_BORROWED,DATE_RETURNED) VALUES('"+getItemid()+"','"+getUserid()+"','"+formattedDate+"','"+defaulttime+"')"); 
+ query = "update items set Isborrowed = ? where ITEM_ID = ?";
+
+PreparedStatement preparedStmt = con.prepareStatement(query);
+preparedStmt.setInt(1, 1);
+preparedStmt.setString(2, getItemid());
+preparedStmt.executeUpdate();
  con.close();
   if(val == 0){
   return ERROR;
