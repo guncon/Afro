@@ -37,6 +37,9 @@
   <action name="return" class= "core.Returnlist" >
   <result>/webpages/insertReturn.jsp</result>
   </action>
+    <action name="comment" class= "core.Commentlist" >
+  <result>/webpages/insertComment.jsp</result>
+  </action>
   <action name="insertItem" class="core.Insertitem">
   <result  name="error">/webpages/insertItem.jsp</result>
   <result name = "input">/webpages/insertItem.jsp</result>
@@ -64,6 +67,14 @@
   <result>/webpages/insertSuccess.jsp
   </result>
   </action>
+  
+   <action name="insertComment" class="core.Insertcomment">
+  <result  name="error">/webpages/insertComment.jsp</result>
+  <result name = "input">/webpages/insertComment.jsp</result>
+  <result>/webpages/insertSuccess.jsp
+  </result>
+  </action>
+  
   <action name="loop" class = "core.getXML">
   <result>/webpages/welcome.jsp
   </result>
@@ -73,6 +84,7 @@
   </result>
   
   </action>
+  
   <action name="refreshing" class="core.getXML">
   <result>/webpages/login.jsp
   </result>

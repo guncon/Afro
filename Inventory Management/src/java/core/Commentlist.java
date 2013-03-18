@@ -21,7 +21,7 @@ import org.w3c.dom.NodeList;
  *
  * @author samsung
  */
-public class Borrowlist extends ActionSupport{
+public class Commentlist extends ActionSupport{
     
      private ArrayList itemid = null;
 
@@ -29,8 +29,6 @@ public class Borrowlist extends ActionSupport{
 
     
      private parseXML pxml = new parseXML();
-     private getXML gxml = new getXML();
-
 
 
     public ArrayList getItemid() {
@@ -50,8 +48,8 @@ public class Borrowlist extends ActionSupport{
  
 
     public String execute() throws Exception {
-gxml.createxml("items", "*", "Isborrowed = 0", 1, "itemsnotborrowed");
-itemid = new ArrayList(new HashSet(pxml.xmlparse("ITEM_ID", "itemsnotborrowed.xml")));
+
+itemid = new ArrayList(new HashSet(pxml.xmlparse("ITEM_ID", "items.xml")));
 
 
         return SUCCESS;

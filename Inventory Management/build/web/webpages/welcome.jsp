@@ -20,7 +20,11 @@ type="text/css"/>
 <s:form action="return" method="POST">
 <s:submit value="Go to return" align="center"/>
 </s:form>
+<s:form action="comment" method="POST">
+<s:submit value="comment on item" align="center"/>
 
+
+</s:form>
 <s:form action="refresh" method="POST">
 <s:submit value="refresh database" align="center"/>
 
