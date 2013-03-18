@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import mysql.MySqlConnector;
+import org.apache.struts2.ServletActionContext;
 
 
 
@@ -19,18 +22,14 @@ public  class Updateborrow  extends ActionSupport {
   private Connection con;
   private Statement stmt;
  private String query = "";
-  
  private String userid;
+
  private String itemid;
     private String query2;
 
-    public String getUserid() {
-        return userid;
-    }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
+
+
 
     public String getItemid() {
         return itemid;
@@ -42,7 +41,9 @@ public  class Updateborrow  extends ActionSupport {
    
   
   public String execute() throws Exception {
-
+ HttpServletRequest request = ServletActionContext.getRequest();
+ HttpSession session = request.getSession();
+userid = session.getAttribute("logged-in").toString();
   try{
   
   con=mysql.getConnection();
@@ -61,7 +62,7 @@ query = "update borrowed set DATE_RETURNED = ? where ITEM_ID = ? AND USER_ID = ?
 PreparedStatement preparedStmt = con.prepareStatement(query);
 preparedStmt.setString(1, formattedDate);
 preparedStmt.setString(2,  getItemid());
-preparedStmt.setString(3,  getUserid());
+preparedStmt.setString(3,  userid);
 preparedStmt.executeUpdate();
 query2 = "update items set Isborrowed = ? where ITEM_ID = ?";
 PreparedStatement preparedStmt2 = con.prepareStatement(query2);

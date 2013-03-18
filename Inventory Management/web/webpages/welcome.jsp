@@ -14,11 +14,11 @@ type="text/css"/>
 <s:form action="item" method="POST">
 <s:submit value="Go to item registration" align="center"/>
 </s:form>
-<s:form action="person" method="POST">
-<s:submit value="Go to user registration" align="center"/>
+<s:form action="borrow" method="POST">
+<s:submit value="Go to borrow" align="center"/>
 </s:form>
-<s:form action="borrowed" method="POST">
-<s:submit value="Go to check in/out" align="center"/>
+<s:form action="return" method="POST">
+<s:submit value="Go to return" align="center"/>
 </s:form>
 
 <s:form action="refresh" method="POST">

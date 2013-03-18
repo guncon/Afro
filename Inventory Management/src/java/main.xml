@@ -19,7 +19,11 @@
 
 <!-- inserting data into data base through JDBC -->
 
- 
+ <action name="Login" class="core.Login">
+  <result  name="error">/webpages/login.jsp</result>
+  <result>/webpages/welcome.jsp
+  </result>
+  </action>
   <action name="person" class = "core.Userlist">
   <result>/webpages/insertUser.jsp</result>
   </action>
@@ -27,10 +31,12 @@
    <action name="item" class= "core.Itemlist">
   <result>/webpages/insertItem.jsp</result>
   </action>
-  <action name="borrowed" class= "core.Borrowlist" >
+  <action name="borrow" class= "core.Borrowlist" >
   <result>/webpages/insertBorrow.jsp</result>
   </action>
-
+  <action name="return" class= "core.Returnlist" >
+  <result>/webpages/insertReturn.jsp</result>
+  </action>
   <action name="insertItem" class="core.Insertitem">
   <result  name="error">/webpages/insertItem.jsp</result>
   <result name = "input">/webpages/insertItem.jsp</result>
@@ -41,7 +47,7 @@
   <action name="insertUser" class="core.Insertuser">
   <result  name="error">/webpages/insertUser.jsp</result>
   <result name = "input">/webpages/insertUser.jsp</result>
-  <result>/webpages/insertSuccess.jsp
+  <result>/webpages/login.jsp
   </result>
   </action>
   
@@ -53,8 +59,8 @@
   </action>
   
       <action name="updateBorrow" class="core.Updateborrow">
-  <result  name="error">/webpages/insertBorrow.jsp</result>
-  <result name = "input">/webpages/insertBorrow.jsp</result>
+  <result  name="error">/webpages/insertReturn.jsp</result>
+  <result name = "input">/webpages/insertReturn.jsp</result>
   <result>/webpages/insertSuccess.jsp
   </result>
   </action>
@@ -65,8 +71,13 @@
   <action name="refresh" class="core.getXML">
   <result>/webpages/welcome.jsp
   </result>
-  </action>
   
+  </action>
+  <action name="refreshing" class="core.getXML">
+  <result>/webpages/login.jsp
+  </result>
+  
+  </action>
   
   </package>
 

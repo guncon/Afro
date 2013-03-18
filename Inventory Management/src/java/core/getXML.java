@@ -39,38 +39,37 @@ public class getXML extends ActionSupport{
     private Connection con;
     private Statement stmt;
     private ResultSet rs;
-    private List list;
+   
     private ArrayList listborrow;
     
 public String execute() throws Exception {
-     list = new ArrayList();
-     list.add("*");
-     createxml("items", list);
-     createxml("groups",list);
-     createxml("permission",list);
-     createxml("users",list);
-     listborrow = new ArrayList();
-     listborrow.add("ITEM_ID");
-     listborrow.add("USER_ID");
-     createxml("borrowed",listborrow);
+
+     createxml("items", "*",null,2,"items");
+     createxml("groups","*",null,2,"groups");
+     createxml("permission","*",null,2,"permission");
+     createxml("users","*",null,2,"users");
+     
+     createxml("borrowed","USER_ID,ITEM_ID",null,2,"borrowed");
        
      return SUCCESS;
     } 
          
 
-    public void createxml(String table,List list) throws TransformerFactoryConfigurationError, ParserConfigurationException, SQLException, DOMException, TransformerException, TransformerConfigurationException, IllegalArgumentException {
+    public void createxml(String table,String queries, String wherers, int checker, String output) throws TransformerFactoryConfigurationError, ParserConfigurationException, SQLException, DOMException, TransformerException, TransformerConfigurationException, IllegalArgumentException {
         String select = "Select ";
         String from = " from ";
         String query ="";
+        String where = " WHERE ";
         int x=0;
-        String queries="";
-        while(list.size()>x+1)
+        if(checker==1)
         {
-           queries = list.get(x).toString()+",";
-           x++;
+        query = select +queries+from+table+where+wherers;
         }
-        queries =queries + list.get(list.size()-1).toString();
+        if(checker ==2)
+        {
+  
         query = select +queries+from+table;
+        }
         System.out.println(query);
         con = mysql.getConnection();
         stmt = con.createStatement();
@@ -103,7 +102,7 @@ while(rs.next()){
     transformer.setOutputProperty(OutputKeys.INDENT, "yes");
     
     
-    StreamResult sr = new StreamResult(new File(table+".xml"));
+    StreamResult sr = new StreamResult(new File(output+".xml"));
     transformer.transform(domSource, sr);
 
     con.close();

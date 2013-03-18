@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import mysql.MySqlConnector;
+import org.apache.struts2.ServletActionContext;
 
 
 
@@ -18,19 +21,17 @@ public  class Insertborrow  extends ActionSupport {
   private MySqlConnector mysql = new MySqlConnector();
   private Connection con;
   private Statement stmt;
+
  
-  
- private String userid;
+
+
  private String itemid;
     private String query;
+    private String userid;
 
-    public String getUserid() {
-        return userid;
-    }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
+
+
 
     public String getItemid() {
         return itemid;
@@ -42,7 +43,9 @@ public  class Insertborrow  extends ActionSupport {
    
   
   public String execute() throws Exception {
-
+ HttpServletRequest request = ServletActionContext.getRequest();
+ HttpSession session = request.getSession();
+userid = session.getAttribute("logged-in").toString();
   try{
   
   con=mysql.getConnection();
@@ -58,7 +61,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 String formattedDate = sdf.format(date);
 String defaulttime = "0000-00-00 00:00:00";
 
- int val = stmt.executeUpdate("INSERT INTO borrowed (ITEM_ID, USER_ID,DATE_BORROWED,DATE_RETURNED) VALUES('"+getItemid()+"','"+getUserid()+"','"+formattedDate+"','"+defaulttime+"')"); 
+ int val = stmt.executeUpdate("INSERT INTO borrowed (ITEM_ID, USER_ID,DATE_BORROWED,DATE_RETURNED) VALUES('"+getItemid()+"','"+userid+"','"+formattedDate+"','"+defaulttime+"')"); 
  query = "update items set Isborrowed = ? where ITEM_ID = ?";
 
 PreparedStatement preparedStmt = con.prepareStatement(query);

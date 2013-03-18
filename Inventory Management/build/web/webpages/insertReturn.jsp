@@ -10,17 +10,18 @@ type="text/css"/>
 <body>
 
 
-<s:form action="insertBorrow"  method="POST">
+
+    
+  <s:form action="updateBorrow"  method="POST">
 
 
 
 
-<s:select list="itemid" name="itemid" label="ITEM ID" />
+<s:radio list="borroweditem" name="itemid" label="ITEM ID" />
           
-<s:submit value="Borrow" align="center"/>
+<s:submit value="Return" align="center"/>
  
 </s:form>
-    
 
 </body>
 

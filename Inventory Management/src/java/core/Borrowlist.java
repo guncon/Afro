@@ -23,20 +23,15 @@ import org.w3c.dom.NodeList;
  */
 public class Borrowlist extends ActionSupport{
     
-    private ArrayList userid = null;
      private ArrayList itemid = null;
-     private ArrayList borroweditem = null;
-     private ArrayList borrower = null;
+
+
+
     
      private parseXML pxml = new parseXML();
+     private getXML gxml = new getXML();
+     private Login login = new Login();
 
-    public ArrayList getUserid() {
-        return userid;
-    }
-
-    public void setUserid(ArrayList userid) {
-        this.userid = userid;
-    }
 
     public ArrayList getItemid() {
         return itemid;
@@ -46,34 +41,17 @@ public class Borrowlist extends ActionSupport{
         this.itemid = itemid;
     }
 
-    public ArrayList getBorroweditem() {
-        return borroweditem;
-    }
 
-    public void setBorroweditem(ArrayList borroweditem) {
-        this.borroweditem = borroweditem;
-    }
 
-    public ArrayList getBorrower() {
-        return borrower;
-    }
 
-    public void setBorrower(ArrayList borrower) {
-        this.borrower = borrower;
-    }
 
 
  
  
 
     public String execute() throws Exception {
-
-
-itemid = new ArrayList(new HashSet(pxml.xmlparse("ITEM_ID", "items.xml")));
-userid = new ArrayList(new HashSet(pxml.xmlparse("USER_ID", "users.xml")));
-borroweditem = new ArrayList(pxml.xmlparse("ITEM_ID", "borrowed.xml"));
-borrower = new ArrayList(pxml.xmlparse("USER_ID", "borrowed.xml"));
-
+gxml.createxml("items", "*", "Isborrowed = 0", 1, "itemsnotborrowed");
+itemid = new ArrayList(new HashSet(pxml.xmlparse("ITEM_ID", "itemsnotborrowed.xml")));
 
 
         return SUCCESS;

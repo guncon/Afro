@@ -15,24 +15,12 @@ type="text/css"/>
 
 
 
-<s:select list="userid" name="userid" label="USER ID"/>
 <s:select list="itemid" name="itemid" label="ITEM ID" />
           
 <s:submit value="Borrow" align="center"/>
  
 </s:form>
     
-  <s:form action="updateBorrow"  method="POST">
-
-
-
-
-<s:radio list="borrower" name="userid" label="USER ID"/>
-<s:radio list="borroweditem" name="itemid" label="ITEM ID" />
-          
-<s:submit value="Return" align="center"/>
- 
-</s:form>
 
 </body>
 
