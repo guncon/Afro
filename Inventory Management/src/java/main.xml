@@ -79,6 +79,10 @@
   
   </action>
   
+  <action name="Logout" class="core.Logout">
+  <result>/webpages/login.jsp
+  </result>
+  </action>
   </package>
 
 

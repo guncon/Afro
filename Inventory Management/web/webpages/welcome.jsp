@@ -26,6 +26,12 @@ type="text/css"/>
 
 
 </s:form>
+    
+ <s:form action="Logout" method="POST">
+<s:submit value="logout" align="center"/>
+
+
+</s:form>
 </body>
 
 </html>
