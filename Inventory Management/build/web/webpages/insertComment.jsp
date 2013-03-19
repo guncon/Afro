@@ -14,7 +14,7 @@ type="text/css"/>
 
 
 <s:select list="itemid" name="itemid" label="item id"/>
-<s:textfield name="comment" label="comment" size = "30"/>
+<s:textfield name="comment" label="comment" size = "30" />
 
 
 
