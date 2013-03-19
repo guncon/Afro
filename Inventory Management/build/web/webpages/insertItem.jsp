@@ -14,7 +14,6 @@ type="text/css"/>
 
 
 
-<s:textfield name="itemid" label="item ID" />
 <s:textfield name="itemname" label="item name" />
 <s:select list="prodidlist" name="prodid" label = "product ID"/>
 <s:select list="itemtypeidlist" name="itemtypeid" label="item type ID" />

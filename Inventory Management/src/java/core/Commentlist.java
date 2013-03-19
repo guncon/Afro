@@ -26,7 +26,7 @@ public class Commentlist extends ActionSupport{
      private ArrayList itemid = null;
 
 
-
+     private getXML gxml = new getXML();
     
      private parseXML pxml = new parseXML();
 
@@ -48,7 +48,7 @@ public class Commentlist extends ActionSupport{
  
 
     public String execute() throws Exception {
-
+gxml.refreshxml();
 itemid = new ArrayList(new HashSet(pxml.xmlparse("ITEM_ID", "items.xml")));
 
 

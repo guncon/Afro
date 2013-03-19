@@ -14,9 +14,7 @@ type="text/css"/>
 
 
 
-<s:textfield name="userid" label="user ID" />
-<s:textfield name="username" label="user name" />
-<s:textfield name="ldapid" label="LDAP ID" />
+
 <s:select list="groupid" name="groupid" label="group ID"/>
 <s:select list="permid" name="permid" label="permission ID" />
           

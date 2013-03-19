@@ -2,94 +2,59 @@ package core;
 
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import mysql.MySqlConnector;
+import org.apache.struts2.ServletActionContext;
 
 
 
 /**
  * <p> Validate a user login. </p>
  */
-public  class Insertuser  extends ActionSupport {
+public  class Insertuser{
   private MySqlConnector mysql = new MySqlConnector();
   private Connection con;
   private Statement stmt;
+  private getXML gxml = new getXML();
   
-  private String userid;
-  private String username;
-  private String ldapid;
-  private int groupid;
-  private int permid;
 
-    public String getUserid() {
-        return userid;
-    }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getLdapid() {
-        return ldapid;
-    }
-
-    public void setLdapid(String ldapid) {
-        this.ldapid = ldapid;
-    }
-
-    public int getGroupid() {
-        return groupid;
-    }
-
-    public void setGroupid(int groupid) {
-        this.groupid = groupid;
-    }
-
-    public int getPermid() {
-        return permid;
-    }
-
-    public void setPermid(int permid) {
-        this.permid = permid;
-    }
 
    
   
-  public String execute() throws Exception {
+  public void insertuser() throws Exception{
+      
+            HttpServletRequest request = ServletActionContext.getRequest();
+            HttpSession session = request.getSession();
+           String userid = session.getAttribute("logged-in").toString();
+             try{
+             
+             con=mysql.getConnection();
+             stmt=con.createStatement();
+            
+             }
+             catch(Exception e){
+             System.out.println(e.getMessage());
+             }
 
-  try{
+ 
+
+           
+             int val = stmt.executeUpdate("INSERT INTO users (DISPLAY_NAME,GRP_ID,PERM_ID) VALUES('"+userid+"','1','1')"); 
+             gxml.refreshxml();
+             con.close();
+       
+        }
   
-  con=mysql.getConnection();
-  stmt=con.createStatement();
- 
-  }
-  catch(Exception e){
-  System.out.println(e.getMessage());
-  }
 
- 
-
- int val = stmt.executeUpdate("INSERT INTO users (USER_ID,DISPLAY_NAME,LDAP_ID,GRP_ID,PERM_ID) VALUES('"+getUserid()+"','"+getUsername()+"','"+getLdapid()+"','"+getGroupid()+"','"+getPermid()+"')"); 
- con.close();
-  if(val == 0){
-  return ERROR;
- 
-  }
-  else{
-  return SUCCESS;
-  
-  }
   
         
   }
 
 
-}
+

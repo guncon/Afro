@@ -24,6 +24,7 @@ public  class Insertcomment extends ActionSupport {
  private String itemid;
  private String comment;
     private String userid;
+    private getXML gxml = new getXML();
 
 
 
@@ -68,7 +69,7 @@ String formattedDate = sdf.format(date);
  int val = stmt.executeUpdate("INSERT INTO comments (ITEM_ID, USER_ID,TEXT,DATE_COMMENT) VALUES('"+getItemid()+"','"+userid+"','"+getComment()+"','"+formattedDate+"')"); 
 
 
-
+gxml.refreshxml();
  con.close();
   if(val == 0){
   return ERROR;

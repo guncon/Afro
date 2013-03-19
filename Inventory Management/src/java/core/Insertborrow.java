@@ -28,6 +28,7 @@ public  class Insertborrow  extends ActionSupport {
  private String itemid;
     private String query;
     private String userid;
+    private getXML gxml = new getXML();
 
 
 
@@ -68,6 +69,7 @@ PreparedStatement preparedStmt = con.prepareStatement(query);
 preparedStmt.setInt(1, 1);
 preparedStmt.setString(2, getItemid());
 preparedStmt.executeUpdate();
+gxml.refreshxml();
  con.close();
   if(val == 0){
   return ERROR;

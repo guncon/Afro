@@ -54,7 +54,14 @@ public String execute() throws Exception {
      return SUCCESS;
     } 
          
-
+public void refreshxml() throws Exception{
+     createxml("items", "*",null,2,"items");
+     createxml("groups","*",null,2,"groups");
+     createxml("permission","*",null,2,"permission");
+     createxml("users","*",null,2,"users");
+     
+     createxml("borrowed","USER_ID,ITEM_ID",null,2,"borrowed");
+}
     public void createxml(String table,String queries, String wherers, int checker, String output) throws TransformerFactoryConfigurationError, ParserConfigurationException, SQLException, DOMException, TransformerException, TransformerConfigurationException, IllegalArgumentException {
         String select = "Select ";
         String from = " from ";

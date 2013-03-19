@@ -14,7 +14,7 @@ type="text/css"/>
 
 
 
-<s:textfield name="userid" label="user id" />
+<s:textfield name="username" label="user name" />
 <s:password name="password" label="password" />
 
           

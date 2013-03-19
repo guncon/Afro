@@ -31,6 +31,15 @@
    <action name="item" class= "core.Itemlist">
   <result>/webpages/insertItem.jsp</result>
   </action>
+  
+    <action name="product">
+  <result>/webpages/insertProduct.jsp</result>
+  </action>
+  
+    <action name="itemtype">
+  <result>/webpages/insertItemtype.jsp</result>
+  </action>
+  
   <action name="borrow" class= "core.Borrowlist" >
   <result>/webpages/insertBorrow.jsp</result>
   </action>
@@ -43,6 +52,20 @@
   <action name="insertItem" class="core.Insertitem">
   <result  name="error">/webpages/insertItem.jsp</result>
   <result name = "input">/webpages/insertItem.jsp</result>
+  <result>/webpages/insertSuccess.jsp
+  </result>
+  </action>
+
+<action name="insertProduct" class="core.Insertproduct">
+  <result  name="error">/webpages/insertProduct.jsp</result>
+  <result name = "input">/webpages/insertProduct.jsp</result>
+  <result>/webpages/insertSuccess.jsp
+  </result>
+  </action>
+
+<action name="insertItemType" class="core.Insertitemtype">
+  <result  name="error">/webpages/insertItemtype.jsp</result>
+  <result name = "input">/webpages/insertItemtype.jsp</result>
   <result>/webpages/insertSuccess.jsp
   </result>
   </action>

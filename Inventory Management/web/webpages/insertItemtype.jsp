@@ -10,13 +10,14 @@ type="text/css"/>
 <body>
 
 
-<s:form action="insertItem"  method="POST">
+<s:form action="insertItemType"  method="POST">
 
 
 
-<s:textfield name="itemname" label="item name" />
-<s:select list="prodidlist" name="prodid" label = "product ID"/>
-<s:select list="itemtypeidlist" name="itemtypeid" label="item type ID" />
+<s:textfield name="itemtypename" label="Item Type Name" />
+
+
+
           
 <s:submit value="Save" align="center"/>
 

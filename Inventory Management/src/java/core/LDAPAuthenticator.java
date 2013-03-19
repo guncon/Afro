@@ -1,17 +1,30 @@
+package core;
+
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
+import org.apache.struts2.interceptor.SessionAware;
 
 
-public class LDAPAuthenticator extends ActionSupport {
+public class LDAPAuthenticator extends ActionSupport implements SessionAware{
     private  String username;
     private  String password;
-
+    private Map<String, Object> session;
+    private parseXML pxml = new parseXML();
+    private ArrayList<String> users;
+    private ArrayList groupid = null;
+     private ArrayList permid = null;
+     private Insertuser iu = new Insertuser();
     public String getUsername() {
         return username;
     }
@@ -27,19 +40,38 @@ public class LDAPAuthenticator extends ActionSupport {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public ArrayList getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid(ArrayList groupid) {
+        this.groupid = groupid;
+    }
+
+    public ArrayList getPermid() {
+        return permid;
+    }
+
+    public void setPermid(ArrayList permid) {
+        this.permid = permid;
+    }
     
-    
-	 public String execute() 
-	{   String usern =" uid="+getUsername()+",ou=auth,o=sec" ;
-                
-       
+     public void setSession(Map<String, Object> session) {
+        this.session = session;
+    }
+    @Override
+	 public String execute()
+	{   String usern ="uid="+username+",ou=auth,o=sec" ;
+            
+            
 		Properties env = new Properties();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
 		env.put(Context.PROVIDER_URL, "ldap://165.213.248.99:11389");
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
-//	    env.put(Context.SECURITY_PRINCIPAL, "uid=iggy.tan,ou=auth,o=sec");
+                System.out.println(usern);
             env.put(Context.SECURITY_PRINCIPAL, usern);
-	    env.put(Context.SECURITY_CREDENTIALS, getPassword());
+	    env.put(Context.SECURITY_CREDENTIALS, password);
 
 
 		SearchControls searchCtrls = new SearchControls();
@@ -51,15 +83,29 @@ public class LDAPAuthenticator extends ActionSupport {
 		DirContext ctx = null;
 		try {
 			ctx = new InitialDirContext(env);
-//			NamingEnumeration<SearchResult> answer = ctx.search(
-//					   "ou=emp, ou=reg, o=sec", filter, searchCtrls);
-//
-//			String fullDN = null;
-//			while (answer.hasMore()) {
-//			    fullDN = answer.next().getNameInNamespace();
-//			    System.out.println(fullDN + "\n");
-//			}
+               
+            
+                                            try { users = new ArrayList(new HashSet(pxml.xmlparse("DISPLAY_NAME", "users.xml")));
+                                            } catch (Exception ex) {
+                                                     Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+                            
+                                            }
+                                            session.put("logged-in", username);
+                        if(users.contains(username))
+                        { 
                         return SUCCESS;
+                        }
+                        else 
+                        {    
+                        try {
+                            iu.insertuser();
+                            return SUCCESS;
+                        } catch (Exception ex) {
+                            Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+                            return ERROR;
+                        }
+                      
+                        }
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package core;
+package notused;
 
 import com.opensymphony.xwork2.ActionSupport;
+import core.parseXML;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -71,7 +72,7 @@ private parseXML pxml = new parseXML();
 
    
  
-            public void setSession(Map<String, Object> session) {
+        public void setSession(Map<String, Object> session) {
         this.session = session;
     }
     public String execute() throws Exception {

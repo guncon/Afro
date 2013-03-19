@@ -14,6 +14,12 @@ type="text/css"/>
 <s:form action="item" method="POST">
 <s:submit value="Go to item registration" align="center"/>
 </s:form>
+<s:form action="product" method="POST">
+<s:submit value="Go to product registration" align="center"/>
+</s:form>
+<s:form action="itemtype" method="POST">
+<s:submit value="Go to item type registration" align="center"/>
+</s:form>
 <s:form action="borrow" method="POST">
 <s:submit value="Go to borrow" align="center"/>
 </s:form>

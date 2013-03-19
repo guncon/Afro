@@ -15,18 +15,12 @@ public  class Insertitem  extends ActionSupport {
   private Connection con;
   private Statement stmt;
   
-  private String itemid;
+
   private String itemname;
   private int prodid;
   private int itemtypeid;
+  private getXML gxml = new getXML();
 
-    public String getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(String itemid) {
-        this.itemid = itemid;
-    }
 
     public String getItemname() {
         return itemname;
@@ -66,7 +60,8 @@ public  class Insertitem  extends ActionSupport {
 
  
 
- int val = stmt.executeUpdate("INSERT INTO items (ITEM_ID,NAME,PROD_ID,ITEM_TYPE_ID,Isborrowed) VALUES('"+getItemid()+"','"+getItemname()+"','"+getProdid()+"','"+getItemtypeid()+"',0)"); 
+ int val = stmt.executeUpdate("INSERT INTO items (NAME,PROD_ID,ITEM_TYPE_ID,Isborrowed) VALUES('"+getItemname()+"','"+getProdid()+"','"+getItemtypeid()+"',0)"); 
+ gxml.refreshxml();
  con.close();
   if(val == 0){
   return ERROR;
