@@ -19,7 +19,7 @@
 
 <!-- inserting data into data base through JDBC -->
 
- <action name="Login" class="core.Login">
+ <action name="Login" class="core.LDAPAuthenticator">
   <result  name="error">/webpages/login.jsp</result>
   <result>/webpages/welcome.jsp
   </result>
