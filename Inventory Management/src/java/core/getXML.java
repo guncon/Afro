@@ -48,7 +48,8 @@ public String execute() throws Exception {
      createxml("groups","*",null,2,"groups");
      createxml("permission","*",null,2,"permission");
      createxml("users","*",null,2,"users");
-     
+     createxml("products","*",null,2,"products");
+     createxml("item_types","*",null,2,"item_types");
      createxml("borrowed","USER_ID,ITEM_ID",null,2,"borrowed");
        
      return SUCCESS;
@@ -59,7 +60,8 @@ public void refreshxml() throws Exception{
      createxml("groups","*",null,2,"groups");
      createxml("permission","*",null,2,"permission");
      createxml("users","*",null,2,"users");
-     
+     createxml("products","*",null,2,"products");
+     createxml("item_types","*",null,2,"item_types");
      createxml("borrowed","USER_ID,ITEM_ID",null,2,"borrowed");
 }
     public void createxml(String table,String queries, String wherers, int checker, String output) throws TransformerFactoryConfigurationError, ParserConfigurationException, SQLException, DOMException, TransformerException, TransformerConfigurationException, IllegalArgumentException {

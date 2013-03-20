@@ -51,8 +51,8 @@ public class Itemlist extends ActionSupport{
     public String execute() throws Exception {
 
 
-prodidlist = new ArrayList(new HashSet(pxml.xmlparse("PROD_ID", xmlname)));
-itemtypeidlist = new ArrayList(new HashSet(pxml.xmlparse("ITEM_TYPE_ID", xmlname)));
+prodidlist = new ArrayList(new HashSet(pxml.xmlparse("PROD_ID", "products.xml")));
+itemtypeidlist = new ArrayList(new HashSet(pxml.xmlparse("ITEM_TYPE_ID", "item_types.xml")));
 
 
 

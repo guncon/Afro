@@ -10,31 +10,64 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  
 public class SendMailSSL {
-	public void sendmail() {
+	public void sendmailborrow(String user, String device) {
 		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.host", "smtp.samsung.com");
+		props.put("mail.smtp.socketFactory.port", "25");
 		props.put("mail.smtp.socketFactory.class",
 				"javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.port", "25");
  
 		Session session = Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("username","password");
+					return new PasswordAuthentication("dpi.spmc@samsung.com","kimchi12#");
 				}
 			});
  
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("from@no-spam.com"));
+			message.setFrom(new InternetAddress("dpi.spmc@samsung.com"));
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("to@no-spam.com"));
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler," +
-					"\n\n No spam to my email, please!");
+					InternetAddress.parse("f.sandoval@samsung.com"));
+			message.setSubject("Device "+device+" borrowed");
+			message.setText("User "+user+" borrowed device "+device);
+ 
+			Transport.send(message);
+ 
+			System.out.println("Done");
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+        
+        public void sendmailreturn(String user, String device) {
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.samsung.com");
+		props.put("mail.smtp.socketFactory.port", "25");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "25");
+ 
+		Session session = Session.getDefaultInstance(props,
+			new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("dpi.spmc@samsung.com","kimchi12#");
+				}
+			});
+ 
+		try {
+ 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("dpi.spmc@samsung.com"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse("f.sandoval@samsung.com"));
+			message.setSubject("Device "+device+" borrowed");
+			message.setText("User "+user+" returned device "+device);
  
 			Transport.send(message);
  

@@ -25,6 +25,9 @@ public class LDAPAuthenticator extends ActionSupport implements SessionAware{
     private ArrayList groupid = null;
      private ArrayList permid = null;
      private Insertuser iu = new Insertuser();
+     private getXML gxml = new getXML();
+     private String userid;
+     private ArrayList useridatm;
     public String getUsername() {
         return username;
     }
@@ -81,7 +84,11 @@ public class LDAPAuthenticator extends ActionSupport implements SessionAware{
 		String filter = "(&(departmentNumber=" + "C10DB03DB030135" + "))";
 
 		DirContext ctx = null;
-		try {
+		try {try {
+                    gxml.refreshxml();
+                } catch (Exception ex) {
+                    Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+                }
 			ctx = new InitialDirContext(env);
                
             
@@ -91,6 +98,18 @@ public class LDAPAuthenticator extends ActionSupport implements SessionAware{
                             
                                             }
                                             session.put("logged-in", username);
+                try {
+                    getuserid();
+                } catch (Exception ex) {
+                    Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+                try {
+                    useridatm = new ArrayList(new HashSet(pxml.xmlparse("USER_ID", "userid.xml")));
+                } catch (Exception ex) {
+                    Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                userid = useridatm.get(0).toString();
+                                            session.put("user-id", userid);
                         if(users.contains(username))
                         { 
                         return SUCCESS;
@@ -98,14 +117,22 @@ public class LDAPAuthenticator extends ActionSupport implements SessionAware{
                         else 
                         {    
                         try {
-                            iu.insertuser();
+                            iu.insertuser(); 
+                            gxml.refreshxml();
                             return SUCCESS;
+                           
                         } catch (Exception ex) {
                             Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex);
+                                try {
+                                    gxml.refreshxml();
+                                } catch (Exception ex1) {
+                                    Logger.getLogger(LDAPAuthenticator.class.getName()).log(Level.SEVERE, null, ex1);
+                                }
                             return ERROR;
                         }
                       
                         }
+                        
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,4 +140,8 @@ public class LDAPAuthenticator extends ActionSupport implements SessionAware{
 		}
 		
 	}
+    public void getuserid() throws Exception{
+       
+        gxml.createxml("users", "*", "DISPLAY_NAME = \""+username+"\"", 1, "userid");
+    }
 }

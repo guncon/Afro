@@ -33,7 +33,7 @@ public class Returnlist extends ActionSupport{
     
      private parseXML pxml = new parseXML();
      private getXML gxml = new getXML();
-     private Login login = new Login();
+    
      private String userid;
 
 
@@ -56,9 +56,10 @@ public class Returnlist extends ActionSupport{
     public String execute() throws Exception {
  HttpServletRequest request = ServletActionContext.getRequest();
  HttpSession session = request.getSession();
-userid = session.getAttribute("logged-in").toString();
+userid = session.getAttribute("user-id").toString();
 gxml.createxml("borrowed", " ITEM_ID,USER_ID ", "USER_ID = "+userid+" AND DATE_RETURNED = 0000-00-00", 1,"borrowedbyuser");
 borroweditem = new ArrayList(pxml.xmlparse("ITEM_ID", "borrowedbyuser.xml"));
+
 
 
         return SUCCESS;
